@@ -20,6 +20,8 @@ vmcommon[http://doc.nwux.taobao.net/vmcommon.html]
 
 法务平台二期【诉讼一期】[http://docs.alibaba-inc.com/pages/viewpage.action?pageId=236405754]
 
+framework链接[http://svn.alibaba-inc.com/repos/ali_cdocrm/framework/rock_framework/]
+
 小工具技术手册[http://docs.alibaba-inc.com:8090/pages/viewpage.action?pageId=475087932]
 
 前端代码[http://gitlab.alibaba-inc.com/platform/finance_fawu/]
