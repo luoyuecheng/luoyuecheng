@@ -24,6 +24,10 @@ framework链接[http://svn.alibaba-inc.com/repos/ali_cdocrm/framework/rock_frame
 
 小工具技术手册[http://docs.alibaba-inc.com:8090/pages/viewpage.action?pageId=475087932]
 
+ali邮箱[webmail.alibaba-inc.com]
+
+
+
 前端代码[http://gitlab.alibaba-inc.com/platform/finance_fawu/]
 前段代码[http://gitlab.alibaba-inc.com/platform/]
 
