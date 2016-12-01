@@ -29,7 +29,7 @@ ali邮箱[webmail.alibaba-inc.com]
 
 
 前端代码[http://gitlab.alibaba-inc.com/platform/finance_fawu/]
-前段代码[http://gitlab.alibaba-inc.com/platform/]
+前端代码[http://gitlab.alibaba-inc.com/platform/]
 
 
 访问网址[http://suit.alibabacorp.com:8080/bogda/suit/manage/suitManagement.htm]

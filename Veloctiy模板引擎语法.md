@@ -74,7 +74,7 @@ $TagUtil.options()
 
 # directives（指令）
 
-## #set
+## #set定义/设置变量
 
 ##### 字符串
 
@@ -117,4 +117,3 @@ $TagUtil.options()
 ```
 #set($a = $b + 1)
 ```
-https://github.com/samuelrafo/piatto.git
