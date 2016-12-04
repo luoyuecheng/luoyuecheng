@@ -117,3 +117,17 @@ $TagUtil.options()
 ```
 #set($a = $b + 1)
 ```
+
+## #if条件判断
+
+```
+#if($msg)
+<script>alert('$!msg');</script>
+#end
+```
+
+## #foreach循环读取集合中的对象
+
+```
+#foreach()
+```
