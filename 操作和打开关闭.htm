@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    *{
+      padding: 0;margin: 0;border: 0;
+    }
+    table{
+      border-collapse: collapse;
+    }
+    tr.parent{
+      cursor: pointer;
+    }
+    tr.son{
+      display: none;
+    }
+    tr.son.bl{
+      display: table-row;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>BU标签</th>
+        <th>添加日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="parent" data-parent="tianmao">
+        <td>天猫</td>
+        <td>2016-11-18</td>
+        <td>
+          <a href="javascript:void(0)">编辑</a>
+          <a href="javascript:void(0)">删除</a>
+          <a href="javascript:void(0)">添加子集</a>
+        </td>
+      </tr>
+      <tr class="son" data-son="tianmao">
+        <td>聚划算</td>
+        <td>2016-11-18</td>
+        <td>
+          <a href="javascript:void(0)">编辑</a>
+          <a href="javascript:void(0)">删除</a>
+          <a href="javascript:void(0)">添加同级</a>
+        </td>
+        <tr>
+          <td>11</td>
+          <td>22</td>
+          <td>33</td>
+        </tr>
+      </tr>
+      <tr class="son" data-son="tianmao">
+        <td>聚划算</td>
+        <td>2016-11-18</td>
+        <td>
+          <a href="javascript:void(0)">编辑</a>
+          <a href="javascript:void(0)">删除</a>
+          <a href="javascript:void(0)">添加同级</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+<script type="text/javascript" src="./jquery-1.11.3.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $("tr.parent", $("table")).on("click", function(e){
+      console.log($(this).data("parent"),$("tr.son").data("son"));
+      var $parent = $(this).data("parent");
+      $("tr.son", $("table")).each(function(i, elem){
+        console.log(i, elem, $(this).data("son"), this);
+        if($(this).data("son") == $parent){
+          $(this).toggleClass("bl");
+        }
+      });
+    });
+
+    $("a", $("tr")).on("click", function(eva){
+      var eva = eva || window.event;
+      if(eva.stopPropagation){
+        eva.stopPropagation();
+      }else{
+        eva.cancelBubble = true;
+      }
+      alert(1);
+    });
+  })
+</script>
+</html>

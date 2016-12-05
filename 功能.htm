@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    *{
+      padding: 0;margin: 0;border: 0;
+    }
+    table{
+      border-collapse: collapse;
+    }
+    .parent{
+      cursor: pointer;
+    }
+    .son{
+      display: none;
+    }
+    .son.tr{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li class="parent" data-add="parent">
+      <span>11</span>
+      <span>22</span>
+      <span>
+        <a href="javascript:;">编辑</a>
+        <a href="javascript:;">添加</a>
+        <a href="javascript:;">删除</a>
+      </span>
+      <ul>
+        <li class="son">
+          <span>111</span>
+          <span>222</span>
+          <span>
+            <a href="javascript:;">编辑</a>
+            <a href="javascript:;">添加</a>
+            <a href="javascript:;">删除</a>
+          </span>
+        </li>
+        <li class="son" data-add="son">
+          <span>1111</span>
+          <span>2222</span>
+          <span>
+            <a href="javascript:;">编辑</a>
+            <a href="javascript:;">添加</a>
+            <a href="javascript:;">删除</a>
+          </span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</body>
+<script type="text/javascript" src="./jquery-1.11.3.js"></script>
+<script type="text/html">
+  $(function(){
+    $("tr.parent", $("table")).on("click", function(e){
+      console.log($(this).data("parent"),$("tr.son").data("son"));
+      var $parent = $(this).data("parent");
+      $("tr.son", $("table")).each(function(i, elem){
+        console.log(i, elem, $(this).data("son"), this);
+        if($(this).data("son") == $parent){
+          $(this).toggleClass("bl");
+        }
+      });
+    });
+
+    $("a", $("tr")).on("click", function(eva){
+      var eva = eva || window.event;
+      if(eva.stopPropagation){
+        eva.stopPropagation();
+      }else{
+        eva.cancelBubble = true;
+      }
+      alert(1);
+    });
+  })
+</script>
+<script type="text/javascript">
+  $(function(){
+    $(".parent", $("ul")).on("click", function(e){
+      $(".son", $(this)).toggleClass("tr");
+      console.log($(this))
+    });
+
+    $("a", $(".parent")).on("click", function(eva){
+      var eva = eva || window.event;
+      if(eva.stopPropagation){
+        eva.stopPropagation();
+      }else{
+        eva.cancelBubble = true;
+      }
+      console.log($(this).parent().parent().data("add"));
+      if($(this).parent().parent().data("add") == $(".parent").data("add")){
+        alert(2)
+        $(this).parent().parent().children("ul").append('<li class="son tr" data-add="son">'+
+          '<span>1111</span>'+
+          '<span>2222</span>'+
+          '<span> '+
+            '<a href="javascript:;">编辑</a> '+
+            '<a href="javascript:;">添加</a> '+
+            '<a href="javascript:;">删除</a> '+
+          '</span>'+
+        '</li>');
+      }
+    });
+
+  })
+</script>
+</html>
