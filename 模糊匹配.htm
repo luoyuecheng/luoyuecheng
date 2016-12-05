@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>模糊匹配</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+
+</body>
+<script>
+  // 字符串方法
+  function(){
+    var len = list.length;
+    var arr = [];
+    for(var i=0; i<len; i++){
+      // 如果字符串中不包含目标字符会返回-1
+      if(list[i].indexOf(keyWord) >= 0){
+        arr.push(list[i]);
+      }
+    }
+    return arr;
+  };
+  // 正则表达式方法
+  function(){
+    var len = list.length;
+    var arr = [];
+    var reg = new RegExp(keyWord);
+    for(var i=0; i<len; i++){
+      // 如果字符串中包含目标字符会返回-1
+      if(list[i].match(reg)){
+        arr.push(list[i]);
+      }
+    }
+  }
+</script>
+</html>
