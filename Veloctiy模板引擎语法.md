@@ -74,7 +74,7 @@ $TagUtil.options()
 
 # directives（指令）
 
-## #set定义/设置变量
+## #set定义/设置变量/给变量赋值
 
 ##### 字符串
 

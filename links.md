@@ -8,6 +8,8 @@ Aone配置环境[https://aone.alibaba-inc.com/aone2/project/list?spm=a1z2z.73656
 
 诉讼需求文档等[http://docs.alibaba-inc.com/pages/viewpage.action?pageId=437190928]
 
+诉讼前端新人指南[http://docs.alibaba-inc.com/pages/viewpage.action?pageId=477462536]
+
 案件标准化项目_详细开发计划[http://docs.alibaba-inc.com/pages/viewpage.action?pageId=475997422]
 
 编码规范[http://guide.taobao.net/3.javascript-style-guide.php#anchor-h2-0]
