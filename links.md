@@ -2,7 +2,8 @@
 
 Kuma样式库[http://10.125.55.239:3012/products/kuma.html]
 
-收案[http://demo.alibaba-inc.com/system/ids_extracted/b0/0a/e7/0f/4d0d2f4fccdbc4c4a664a101/%E6%A0%87%E5%87%86%E7%BB%93%E6%9E%84%E5%8C%96%E6%94%B9%E9%80%A0/index.html#p=收案]
+收案[
+http://demo.alibaba-inc.com/system/ids_extracted/44/c6/b7/de/1f83d0eee44fadc2c214a45c/%E6%A0%87%E5%87%86%E7%BB%93%E6%9E%84%E5%8C%96%E6%94%B9%E9%80%A0/index.html#p=收案_1]
 
 Aone配置环境[https://aone.alibaba-inc.com/aone2/project/list?spm=a1z2z.7365641.bar.4.EB6f3m]
 
@@ -40,3 +41,10 @@ ali邮箱[webmail.alibaba-inc.com]
 访问账号 peng.gongp
 本地访问[suit.alibabacorp.com:8080/bogda/suit/manage/suitManagement.htm]
 日常访问[suit.alibabacorp.com/bogda/suit/manage/suitManagement.htm]
+
+
+控件原有地址
+日历控件 calendar [administration][http://yuan2.alibaba.net/docs/alinw/calendar/latest/]
+
+http://mbraak.github.io/jqTree/examples/08_multiple_select/
+http://mbraak.github.io/jqTree/
