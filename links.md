@@ -48,3 +48,6 @@ ali邮箱[webmail.alibaba-inc.com]
 
 http://mbraak.github.io/jqTree/examples/08_multiple_select/
 http://mbraak.github.io/jqTree/
+
+http://web.jobbole.com/85032/
+http://www.cnblogs.com/wayou/p/jquery_plugin_tutorial.html
