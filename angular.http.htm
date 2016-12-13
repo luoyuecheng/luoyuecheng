@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>angular路由</title>
+   <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+   <div ng-app="myApp">
+      <div ng-controller="myCon">
+         <p ng-repeat="list in  list">
+            {{ list }}
+         </p>
+      </div>
+   </div>
+   <script>
+      var myApp = angular.module("myApp",[]);
+      myApp.controller("myCon",["$scope","$http",function($scope,$http){
+         $http({
+            url : "text.json",
+            method : "GET"
+         }).then(function(response){
+            console.log(response);
+            var data = response.data;
+            return data;
+         }).then(function(data){
+            console.log(data);
+            if(data.success){
+               $scope.list = data.list;
+               console.log($scope.list)
+            }
+         }).catch(function(error){
+            console.log("Failed to get the request information.");
+         });
+      }]);
+   </script>
+</body>
+</html>
