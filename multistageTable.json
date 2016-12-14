@@ -1,0 +1,95 @@
+{
+  "success": true,
+  "data": [
+    {
+      "series": 1,
+      "seriesLength": 4,
+      "title": "消费者诉讼",
+      "childrenLength": 1,
+      "isCreate": false,
+      "children": [
+        {
+          "series": 2,
+          "title": "产品质量问题",
+          "childrenLength": 2,
+          "isCreate": false,
+          "children": [
+            {
+              "series": 3,
+              "title": "标识标签问题",
+              "childrenLength": 2,
+              "isCreate": false,
+              "children": [
+                {
+                  "series": 4,
+                  "title": "名称/规格/净含量/生产日期瑕疵",
+                  "childrenLength": 0,
+                  "isCreate": false
+                },
+                {
+                  "series": 4,
+                  "title": "名称/规格/净含量/生产日期瑕疵",
+                  "childrenLength": 0,
+                  "isCreate": false
+                }
+              ]
+            },
+            {
+              "series": 3,
+              "title": "非法添加问题",
+              "childrenLength": 2,
+              "isCreate": false,
+              "children": [
+                {
+                  "series": 4,
+                  "title": "食品中添加保健食品原料，填写保健食品原料名称",
+                  "childrenLength": 0,
+                  "isCreate": false
+                },
+                {
+                  "series": 4,
+                  "title": "化妆品添加禁用原料，禁用原料名称",
+                  "childrenLength": 0,
+                  "isCreate": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "series": 1,
+      "seriesLength": 2,
+      "title": "备注信息",
+      "childrenLength": 4,
+      "isCreate": false,
+      "children": [
+        {
+          "series": 2,
+          "title": "备注：",
+          "childrenLength": 0,
+          "isCreate": false
+        },
+        {
+          "series": 2,
+          "title": "关键词：",
+          "childrenLength": 0,
+          "isCreate": false
+        },
+        {
+          "series": 2,
+          "title": "是否属实/提供证据：",
+          "childrenLength": 0,
+          "isCreate": false
+        },
+        {
+          "series": 2,
+          "title": "假冒材质子场景：沙发",
+          "childrenLength": 0,
+          "isCreate": false
+        }
+      ]
+    }
+  ]
+}

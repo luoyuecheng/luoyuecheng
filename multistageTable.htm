@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> multistageTable </title>
+  <style type="text/css">
+    table{border: 1px;border-collapse:collapse;}
+  </style>
+  <script src="./jquery-1.11.3.js"></script>
+</head>
+<body>
+  <div id="table"><table border="1"></table></div>
+  <script type="text/template">
+    <table>
+
+    </table>
+  </script>
+</body>
+<script type="text/javascript">
+  $(function() {
+    var tableHtml = "";
+    (function() {
+      $.ajax({
+        // url: 'multistageTable.json',
+        url: 'multistageTable_two.json',
+        type: 'GET',
+        dataType: 'json',
+        data: {}
+      })
+      .done(function(res) {
+        // console.log("success");
+        // console.log(res);
+        // 获取数据成功
+        if(res.success) {
+          // 将返回的数据赋值data
+          var data = res.data,
+          // pId的容器pIdArr
+            pIdArr = [],
+            // 第一级的id容器
+            firstIdArr = [],
+            // 匹配次数，最大值为获取数据长度-1
+            countEqual = 0;
+          // 返回数据不为空
+          if(data) {
+            // 循环返回数据，制作表格
+            for(var i=0, len=data.length; i<len; i++) {
+              if(data[i].pId == "0") {
+                // console.log(data[i].pId);
+                // 匹配次数自增
+                countEqual++;
+                // 检测第一级元素，将id置入数组pIdArr
+                pIdArr.push(data[i].id);
+                firstIdArr.push(data[i].id);
+                // 生成第一级单元格，并预留模板插入单元格
+                tableHtml += '<tr><th rowspan='+data[i].rowspan+'>'+data[i].name+'</th>{{#'+data[i].id+'}}</tr>{{b'+data[i].id+'}}';
+              }
+            }
+            console.log(tableHtml)
+          while(true){
+            // 循环之前生成数组，匹配下一级单元格
+            for(var k=0, pIdArrLen = pIdArr.length; k<pIdArrLen; k++){
+              // 循环数据，匹配下一级单元格
+              for(var i=0, len=data.length; i<len; i++){
+                if(data[i].pId == pIdArr[0]){
+                  // 匹配次数自增
+                  countEqual++;
+                  // 将匹配元素id填入数组，为下一级的pId
+                  pIdArr.push(data[i].id);
+                  // 正则替换模板，生成下一级单元格
+                  var reg1 = RegExp('\{\{#'+pIdArr[0]+'\}\}','ig');
+                  var reg2 = RegExp('\{\{b'+firstIdArr[k]+'\}\}','ig');
+                  if(data[i].id == (data[i].pId + '1')){
+                    console.log("1",data[i])
+                    tableHtml = tableHtml.replace(reg1, function($1){
+                      console.log($1)
+                      return ('<td rowspan='+data[i].rowspan+'>' + data[i].name + '</td>'+ $1 + '{{#' + data[i].id + '}}');
+                    });
+                  }else{
+                    console.log("2",data[i], "2..1")
+                    console.log(reg2, "2..2")
+                    console.log(tableHtml, "2..3")
+                    tableHtml = tableHtml.replace(reg2, function($1){
+                      console.log($1, "2..4")
+                      return '<tr><td rowspan='+data[i].rowspan+'>' + data[i].name + '</td>{{#' + data[i].id + '}}</tr>'+ $1 + '{{b'+data[i].id+'}}';
+                    });
+                  }
+                  // console.log(data[i])
+                  // console.log(tableHtml)
+                }
+              }
+              // 将匹配完的值清出数组，防止同一组匹配多次
+              if(i==len){
+                pIdArr.shift();
+              }
+              // console.log(pIdArr)
+            }
+            if(countEqual >= data.length - 1) {
+              break;
+            }
+          }
+            // console.log(tableHtml, '...', countEqual, '...', pIdArr);
+            $("table", $("#table")).html(tableHtml);
+          }
+        }
+      })
+      .fail(function() {
+        console.log("error");
+      });
+
+    })()
+  })
+</script>
+</html>
