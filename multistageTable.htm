@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <title> multistageTable </title>
   <style type="text/css">
-    table{border: 1px;border-collapse:collapse;}
+    #table table{border-collapse:collapse;}
+    /*#table table tr{ border: 1px solid #000; }
+    #table table td{ border: 1px solid #000; border-right: 0; }*/
   </style>
   <script src="./jquery-1.11.3.js"></script>
 </head>
@@ -34,10 +36,10 @@
         if(res.success) {
           // 将返回的数据赋值data
           var data = res.data,
-          // pId的容器pIdArr
+            // pId的容器pIdArr
             pIdArr = [],
-            // 第一级的id容器
-            firstIdArr = [],
+            // 最后一级级数集合
+            tierArr = [],
             // 匹配次数，最大值为获取数据长度-1
             countEqual = 0;
           // 返回数据不为空
@@ -48,61 +50,86 @@
                 // console.log(data[i].pId);
                 // 匹配次数自增
                 countEqual++;
+                // 生成第一列元素的级数
+                data[i].tier = 1;
                 // 检测第一级元素，将id置入数组pIdArr
-                pIdArr.push(data[i].id);
-                firstIdArr.push(data[i].id);
+                pIdArr.push({"pId": data[i].id, "tier": 1});
                 // 生成第一级单元格，并预留模板插入单元格
-                tableHtml += '<tr><th rowspan='+data[i].rowspan+'>'+data[i].name+'</th>{{#'+data[i].id+'}}</tr>{{b'+data[i].id+'}}';
+                tableHtml += '<tr><th rowspan='+data[i].rowspan+' tier='+data[i].tier+'>'+data[i].name+'</th>{{#'+data[i].id+'}}</tr>{{b'+data[i].id+'}}';
               }
             }
-            console.log(tableHtml)
-          while(true){
-            // 循环之前生成数组，匹配下一级单元格
-            for(var k=0, pIdArrLen = pIdArr.length; k<pIdArrLen; k++){
-              // 循环数据，匹配下一级单元格
-              for(var i=0, len=data.length; i<len; i++){
-                if(data[i].pId == pIdArr[0]){
-                  // 匹配次数自增
-                  countEqual++;
-                  // 将匹配元素id填入数组，为下一级的pId
-                  pIdArr.push(data[i].id);
-                  // 正则替换模板，生成下一级单元格
-                  var reg1 = RegExp('\{\{#'+pIdArr[0]+'\}\}','ig');
-                  var reg2 = RegExp('\{\{b'+data[i].pId+'\}\}','ig');
-                  if(data[i].id == (data[i].pId + '1')){
-                    console.log("1",data[i], i)
-                    tableHtml = tableHtml.replace(reg1, function($1){
-                      console.log($1)
-                      return ('<td rowspan='+data[i].rowspan+'>' + data[i].name + '</td>'+ $1 + '{{#' + data[i].id + '}}');
-                    });
-                    tableHtml = tableHtml.replace(reg2, function($1){
-                      return '{{b' + data[i].id + '}}' + $1;
-                    });
-                  }else{
-                    console.log("2",data[i], "2..1")
-                    console.log(reg2, "2..2")
-                    console.log(tableHtml, "2..3")
-                    tableHtml = tableHtml.replace(reg2, function($1){
-                      console.log($1, "2..4")
-                      return '<tr><td rowspan='+data[i].rowspan+'>' + data[i].name + '</td>{{#' + data[i].id + '}}</tr>{{b'+data[i].id+'}}'+ $1;
-                    });
+            // console.log(tableHtml)
+            while(true){
+              // 循环之前生成数组，匹配下一级单元格
+              for(var k=0, pIdArrLen = pIdArr.length; k<pIdArrLen; k++){
+                // 循环数据，匹配下一级单元格
+                for(var i=0, len=data.length; i<len; i++){
+                  if(data[i].pId == pIdArr[0].pId){
+                    // 匹配次数自增
+                    countEqual++;
+                    // 生成每个元素的级数
+                    data[i].tier = pIdArr[0].tier + 1;
+                    // 将匹配元素id填入数组，为下一级的pId
+                    pIdArr.push({"pId": data[i].id, "tier": data[i].tier});
+                    // 正则替换模板，生成下一级单元格
+                    var reg1 = RegExp('\{\{#'+pIdArr[0].pId+'\}\}','ig');
+                    var reg2 = RegExp('\{\{b'+data[i].pId+'\}\}','ig');
+                    if(data[i].id == (data[i].pId + '1')){
+                      // console.log("1",data[i], i)
+                      tableHtml = tableHtml.replace(reg1, function($1){
+                        // console.log($1)
+                        return ('<td rowspan='+data[i].rowspan+' tier='+data[i].tier+'>' + data[i].name + '</td>'+ $1 + '{{#' + data[i].id + '}}');
+                      });
+                      tableHtml = tableHtml.replace(reg2, function($1){
+                        return '{{b' + data[i].id + '}}' + $1;
+                      });
+                    }else{
+                      // console.log("2",data[i], "2..1")
+                      // console.log(reg2, "2..2")
+                      // console.log(tableHtml, "2..3")
+                      tableHtml = tableHtml.replace(reg2, function($1){
+                        // console.log($1, "2..4")
+                        return '<tr><td rowspan='+data[i].rowspan+' tier='+data[i].tier+'>' + data[i].name + '</td>{{#' + data[i].id + '}}</tr>{{b'+data[i].id+'}}'+ $1;
+                      });
+                    }
+                    // console.log(data[i])
+                    // console.log(tableHtml)
                   }
-                  // console.log(data[i])
-                  // console.log(tableHtml)
                 }
+                // 将匹配完的值清出数组，防止同一组匹配多次
+                if(i==len){
+                  pIdArr.shift();
+                }
+                // console.log(pIdArr)
               }
-              // 将匹配完的值清出数组，防止同一组匹配多次
-              if(i==len){
-                pIdArr.shift();
+              if(countEqual >= data.length - 1) {
+                break;
               }
-              // console.log(pIdArr)
             }
-            if(countEqual >= data.length - 1) {
-              break;
-            }
-          }
             // console.log(tableHtml, '...', countEqual, '...', pIdArr);
+            // 删除所有模板
+            var reg3 = RegExp("(\{\{#[0-9]+\}\}|\{\{b[0-9]+\}\})", "ig")
+            tableHtml = tableHtml.replace(reg3, "");
+            console.log(tableHtml);
             $("table", $("#table")).html(tableHtml);
+            var trArr = $("tr", $("table", $("#table")));
+            console.log($("#table").attr("id"));
+            $.each(trArr, function(index, elem){
+              // console.log(index, elem)
+              // console.log($(elem).children("td:last").attr("tier"))
+              tierArr.push($(elem).children("td:last").attr("tier"));
+            })
+            var max = tierArr[0];
+            for(var i=0, len=tierArr.length; i<len; i++) {
+              if(max < tierArr[i]){
+                max = tierArr[i];
+              }
+            }
+            console.log(max)
+            $.each(trArr, function(index, elem) {
+              var $td = $(elem).children("td:last")
+              $td.attr({"colspan": max - $td.attr("tier") + 1});
+            });
           }
         }
       })
