@@ -68,12 +68,15 @@
                   pIdArr.push(data[i].id);
                   // 正则替换模板，生成下一级单元格
                   var reg1 = RegExp('\{\{#'+pIdArr[0]+'\}\}','ig');
-                  var reg2 = RegExp('\{\{b'+firstIdArr[k]+'\}\}','ig');
+                  var reg2 = RegExp('\{\{b'+data[i].pId+'\}\}','ig');
                   if(data[i].id == (data[i].pId + '1')){
-                    console.log("1",data[i])
+                    console.log("1",data[i], i)
                     tableHtml = tableHtml.replace(reg1, function($1){
                       console.log($1)
                       return ('<td rowspan='+data[i].rowspan+'>' + data[i].name + '</td>'+ $1 + '{{#' + data[i].id + '}}');
+                    });
+                    tableHtml = tableHtml.replace(reg2, function($1){
+                      return '{{b' + data[i].id + '}}' + $1;
                     });
                   }else{
                     console.log("2",data[i], "2..1")
@@ -81,7 +84,7 @@
                     console.log(tableHtml, "2..3")
                     tableHtml = tableHtml.replace(reg2, function($1){
                       console.log($1, "2..4")
-                      return '<tr><td rowspan='+data[i].rowspan+'>' + data[i].name + '</td>{{#' + data[i].id + '}}</tr>'+ $1 + '{{b'+data[i].id+'}}';
+                      return '<tr><td rowspan='+data[i].rowspan+'>' + data[i].name + '</td>{{#' + data[i].id + '}}</tr>{{b'+data[i].id+'}}'+ $1;
                     });
                   }
                   // console.log(data[i])
