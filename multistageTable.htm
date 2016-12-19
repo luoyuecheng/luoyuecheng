@@ -120,18 +120,21 @@
               }
             });
             console.log($("#table").attr("id"));
+            // 获取每一行最后一个单元格级数
             $.each(trArr, function(index, elem){
               // console.log(index, elem)
               // console.log($(elem).children("td:last").attr("tier"))
               tierArr.push($(elem).children("td:last").attr("tier"));
             })
+            // 查找最大级数
             var max = tierArr[0];
             for(var i=0, len=tierArr.length; i<len; i++) {
               if(max < tierArr[i]){
                 max = tierArr[i];
               }
             }
-            console.log(max)
+            console.log(max);
+            // 合并单元格
             $.each(trArr, function(index, elem) {
               var $td = $(elem).children("td:last")
               $td.attr({"colspan": max - $td.attr("tier") + 1});
