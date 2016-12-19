@@ -113,6 +113,12 @@
             console.log(tableHtml);
             $("table", $("#table")).html(tableHtml);
             var trArr = $("tr", $("table", $("#table")));
+            // 查找一行tr中只有一个th单元格，没有td的行，并添加一个空td
+            $.each(trArr, function(index, el) {
+              if(!$(el).children('td').length) {
+                $(el).append('<td tier="2"></td>')
+              }
+            });
             console.log($("#table").attr("id"));
             $.each(trArr, function(index, elem){
               // console.log(index, elem)
@@ -139,5 +145,14 @@
 
     })()
   })
+</script>
+<script type="text/javascript">
+  var rpc = new jsonrpc.JsonRpc('http://30.2.10.3:9001/multistageTable_two.json');
+
+  rpc.call('getSystemProperties', function(result){
+
+    alert(result);
+
+  });
 </script>
 </html>
