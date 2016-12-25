@@ -1,113 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <style type="text/css">
-    *{
-      padding: 0;margin: 0;border: 0;
-    }
-    table{
-      border-collapse: collapse;
-    }
-    .parent{
-      cursor: pointer;
-    }
-    .son{
-      display: none;
-    }
-    .son.tr{
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <ul>
-    <li class="parent" data-add="parent">
-      <span>11</span>
-      <span>22</span>
-      <span>
-        <a href="javascript:;">编辑</a>
-        <a href="javascript:;">添加</a>
-        <a href="javascript:;">删除</a>
-      </span>
-      <ul>
-        <li class="son">
-          <span>111</span>
-          <span>222</span>
-          <span>
-            <a href="javascript:;">编辑</a>
-            <a href="javascript:;">添加</a>
-            <a href="javascript:;">删除</a>
-          </span>
-        </li>
-        <li class="son" data-add="son">
-          <span>1111</span>
-          <span>2222</span>
-          <span>
-            <a href="javascript:;">编辑</a>
-            <a href="javascript:;">添加</a>
-            <a href="javascript:;">删除</a>
-          </span>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</body>
-<script type="text/javascript" src="./jquery-1.11.3.js"></script>
-<script type="text/html">
-  $(function(){
-    $("tr.parent", $("table")).on("click", function(e){
-      console.log($(this).data("parent"),$("tr.son").data("son"));
-      var $parent = $(this).data("parent");
-      $("tr.son", $("table")).each(function(i, elem){
-        console.log(i, elem, $(this).data("son"), this);
-        if($(this).data("son") == $parent){
-          $(this).toggleClass("bl");
-        }
-      });
-    });
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 
-    $("a", $("tr")).on("click", function(eva){
-      var eva = eva || window.event;
-      if(eva.stopPropagation){
-        eva.stopPropagation();
-      }else{
-        eva.cancelBubble = true;
-      }
-      alert(1);
-    });
-  })
-</script>
-<script type="text/javascript">
-  $(function(){
-    $(".parent", $("ul")).on("click", function(e){
-      $(".son", $(this)).toggleClass("tr");
-      console.log($(this))
-    });
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 
-    $("a", $(".parent")).on("click", function(eva){
-      var eva = eva || window.event;
-      if(eva.stopPropagation){
-        eva.stopPropagation();
-      }else{
-        eva.cancelBubble = true;
-      }
-      console.log($(this).parent().parent().data("add"));
-      if($(this).parent().parent().data("add") == $(".parent").data("add")){
-        alert(2)
-        $(this).parent().parent().children("ul").append('<li class="son tr" data-add="son">'+
-          '<span>1111</span>'+
-          '<span>2222</span>'+
-          '<span> '+
-            '<a href="javascript:;">编辑</a> '+
-            '<a href="javascript:;">添加</a> '+
-            '<a href="javascript:;">删除</a> '+
-          '</span>'+
-        '</li>');
-      }
-    });
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-  })
-</script>
+  </head>
+  <body>
+    <div class="" id="box">
+      <div class="list-group" sid="list">
+        <div class="" sid="list-1" pid="list">
+          <a href="#" class="list-group-item active">Cras justo odio</a>
+            <div class="" sid="list-1-1" pid="list-1">
+              <a href="#" class="list-group-item active">Cras justo odio</a>
+            </div>
+            <div class="" sid="list-1-2" pid="list-1">
+              <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+            </div>
+            <div class="" sid="list-1-3" pid="list-1">
+              <a href="#" class="list-group-item">Morbi leo risus</a>
+            </div>
+            <div class="" sid="list-1-4" pid="list-1">
+              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+            </div>
+            <div class="" sid="list-1-5" pid="list-1">
+              <a href="#" class="list-group-item">Vestibulum at eros</a>
+              <div class="" sid="list-1-5" pid="list-1">
+                <a href="#" class="list-group-item">Vestibulum at eros</a>
+              </div>
+            </div>
+        </div>
+        <div class="" sid="list-2" pid="list">
+          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+        </div>
+        <div class="" sid="list-3" pid="list">
+          <a href="#" class="list-group-item">Morbi leo risus</a>
+        </div>
+        <div class="" sid="list-4" pid="list">
+          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+        </div>
+        <div class="" sid="list-5" pid="list">
+          <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+<style media="screen">
+  #box{ width: 500px;}
+  .list-group{ margin-bottom: 0; margin-left: -10px;}
+  div[pid|=list]{ margin-left: 10px !important;}
+</style>
 </html>

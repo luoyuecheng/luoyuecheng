@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>树状列表</title>
+    <script src="./jquery-1.11.3.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <!-- <div class="" id="box">
+      <div class="list-group" sid="list">
+        <div class="" sid="list-1" pid="list">
+          <span class="triangle"></span>
+          <span class="pointer" href="#" class="list-group-item active">Cras justo odio</span>
+            <div class="" sid="list-1-1" pid="list-1">
+              <span class="pointer" href="#" class="list-group-item active">Cras justo odio</span>
+            </div>
+            <div class="" sid="list-1-2" pid="list-1">
+              <span class="pointer" href="#" class="list-group-item">Dapibus ac facilisis in</span>
+            </div>
+            <div class="" sid="list-1-3" pid="list-1">
+              <span class="pointer" href="#" class="list-group-item">Morbi leo risus</span>
+            </div>
+            <div class="" sid="list-1-4" pid="list-1">
+              <span class="pointer" href="#" class="list-group-item">Porta ac consectetur ac</span>
+            </div>
+            <div class="" sid="list-1-5" pid="list-1">
+              <span class="triangle"></span>
+              <span class="pointer" href="#" class="list-group-item">Vestibulum at eros</span>
+              <div class="" sid="list-1-5" pid="list-1">
+                <span class="pointer" href="#" class="list-group-item">Vestibulum at eros</span>
+              </div>
+            </div>
+        </div>
+        <div class="" sid="list-2" pid="list">
+          <span class="pointer" href="#" class="list-group-item">Dapibus ac facilisis in</span>
+        </div>
+        <div class="" sid="list-3" pid="list">
+          <span class="pointer" href="#" class="list-group-item">Morbi leo risus</span>
+        </div>
+        <div class="" sid="list-4" pid="list">
+          <span class="pointer" href="#" class="list-group-item">Porta ac consectetur ac</span>
+        </div>
+        <div class="" sid="list-5" pid="list">
+          <span class="pointer" href="#" class="list-group-item">Vestibulum at eros</span>
+        </div>
+      </div>
+    </div> -->
+    <div class="" id="box"></div>
+    <!-- 样式 -->
+    <style media="screen">
+    *{border: 0; margin: 0; padding: 0;}
+    #box{ margin: 0 auto; position: relative; width: 500px;}
+    .list-group{ position: absolute; border: 1px solid #f90; padding: 20px 10px;}
+    div[pid|=list]{ margin-left: 20px; line-height: 20px;}
+    .pointer{ cursor: pointer;}
+    .triangle{ display: inline-block; border-top: 6px solid #666; border-right: 3px solid transparent; border-left: 3px solid transparent; cursor: pointer;}
+    .triangle.open{ border-top: 3px solid transparent; border-left: 6px solid #666;border-bottom: 3px solid transparent;}
+    .unis{display: none;}
+    </style>
+    <!-- 代码 -->
+    <script type="text/javascript">
+      $(function() {
+        // 模拟数据
+        var res = {
+          "success": true,
+          "data": [
+            {
+              "name": "Cras justo odio",
+              "sid": "list-1",
+              "pid": "list",
+              "children": [
+                {
+                  "name": "Cras justo odio",
+                  "sid": "list-1-1",
+                  "pid": "list-1"
+                },
+                {
+                  "name": "Cras justo odio",
+                  "sid": "list-1-2",
+                  "pid": "list-1"
+                }
+              ]
+            },
+            {
+              "name": "Cras justo odio",
+              "sid": "list-2",
+              "pid": "list",
+              "children": [
+                {
+                  "name": "Cras justo odio",
+                  "sid": "list-1-1",
+                  "pid": "list-1"
+                }
+              ]
+            },
+            {
+              "name": "Cras justo odio",
+              "sid": "list-3",
+              "pid": "list"
+            }
+          ]
+        };
+        // 例行判断
+        if(res.success){
+          var data = res.data,
+          childrenArr = [];
+          console.log(data instanceof Array);
+          // 生成树
+          for(var i=0, len=data.length; i<len; i++) {
+          }
+          // 添加事件
+          $(".list-group").on("click", ".triangle", function() {
+            if($(this).hasClass("open")) {
+              $(this).removeClass("open").siblings("div").removeClass("unis");
+            }else {
+              $(this).addClass("open").siblings("div").addClass("unis");
+            }
+          });
+        }
+      })
+    </script>
+  </body>
+</html>
