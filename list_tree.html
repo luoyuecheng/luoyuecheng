@@ -103,10 +103,20 @@
         // 例行判断
         if(res.success){
           var data = res.data,
-          childrenArr = [];
+            childrenArr = [],
+            addTo,
+            html = '<div class="list-group" sid="list">';
           console.log(data instanceof Array);
           // 生成树
           for(var i=0, len=data.length; i<len; i++) {
+            html += '<div class="" sid="'+ data[i].sid +'" pid="'+ data[i].pid +'">';
+            if(data[i].children && data[i].children instanceof Array && data[i].children.length) {
+              html += '<span class="triangle"></span>';
+            }
+            html += '<span class="pointer" class="list-group-item active">'+ data[i].name +'</span>';
+            if(!data[i].children || (data[i].children instanceof Array == false && !data[i].children.length)) {
+              html += '</div>';
+            }
           }
           // 添加事件
           $(".list-group").on("click", ".triangle", function() {
